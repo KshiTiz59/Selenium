@@ -93,7 +93,7 @@ public class AutomationController {
     }
 }
 
-#websocketsession manager 
+# websocketsessionmanager.java 
 package com.example.demo;
 
 import org.springframework.web.socket.WebSocketSession;
@@ -116,9 +116,8 @@ public class WebSocketSessionManager {
     }
 }
 
-#websocketconfig.java
+# websocketconfig.java
 package com.example.demo;
-
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.*;
 
