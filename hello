@@ -1,0 +1,53 @@
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.HashMap;
+import java.util.Map;
+
+public class JiraChangeStatus {
+    public static void main(String[] args) throws Exception {
+        String issueKey = "EVERREQ-1234"; // your issue
+        String patToken = "YOUR_PERSONAL_ACCESS_TOKEN";
+        String jiraBaseUrl = "https://jira.sec.samsung.net";
+
+        HttpClient client = HttpClient.newHttpClient();
+
+        // Step 1: Get available transitions
+        HttpRequest getTransitionsRequest = HttpRequest.newBuilder()
+                .uri(URI.create(jiraBaseUrl + "/rest/api/2/issue/" + issueKey + "/transitions"))
+                .header("Authorization", "Bearer " + patToken)
+                .header("Accept", "application/json")
+                .build();
+
+        HttpResponse<String> getResponse = client.send(getTransitionsRequest, HttpResponse.BodyHandlers.ofString());
+        System.out.println("Transitions response: " + getResponse.body());
+
+        // TODO: Inspect this JSON to find the transitionId for "Done"
+        // Example: suppose transitionId = "31"
+
+        String transitionId = "31"; // Replace with actual "Done" transition ID
+
+        // Step 2: Perform transition
+        Map<String, Object> transitionMap = new HashMap<>();
+        Map<String, String> transitionObj = new HashMap<>();
+        transitionObj.put("id", transitionId);
+        transitionMap.put("transition", transitionObj);
+
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonBody = mapper.writeValueAsString(transitionMap);
+
+        HttpRequest transitionRequest = HttpRequest.newBuilder()
+                .uri(URI.create(jiraBaseUrl + "/rest/api/2/issue/" + issueKey + "/transitions"))
+                .header("Authorization", "Bearer " + patToken)
+                .header("Content-Type", "application/json")
+                .header("Accept", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
+                .build();
+
+        HttpResponse<String> transitionResponse = client.send(transitionRequest, HttpResponse.BodyHandlers.ofString());
+        System.out.println("Transition status: " + transitionResponse.statusCode());
+        System.out.println("Transition response: " + transitionResponse.body());
+    }
+}
