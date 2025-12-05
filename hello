@@ -51,3 +51,43 @@ public class JiraChangeStatus {
         System.out.println("Transition response: " + transitionResponse.body());
     }
 }
+
+1. Smart Voice-Based Troubleshooting (AI Support on TV)
+
+Idea:
+An on-device AI assistant that detects common problems (Wi-Fi issues, HDMI not detected, low RAM, app crashes) and guides the user step-by-step to fix them.
+
+Why it’s beneficial:
+	•	Reduces Samsung customer complaints.
+	•	Improves user satisfaction.
+	•	Works offline using on-device LLM.
+	•	Faster than reading long troubleshooting pages.
+
+TV Health Monitor (AI Self-Diagnosis)
+
+Idea:
+AI constantly checks:
+	•	Internal temperature
+	•	Panel health
+	•	Connectivity stability
+	•	System logs
+
+Alerts the user before failure.
+
+Why it’s beneficial:
+	•	Reduces service costs for Samsung.
+	•	Prevents sudden breakdowns.
+	•	Builds trust in Samsung TV’s longevity.
+
+
+AI-Based Multi-Device Sync (Samsung Ecosystem)
+
+Idea:
+TV syncs with Samsung Phones/Watches:
+	•	If user walks away → auto-pause
+	•	If phone rings → reduce volume
+	•	If heart rate is high → show calming visual mode (optional)
+
+Why it’s beneficial:
+	•	Makes Samsung ecosystem stronger.
+	•	Provides unique smart-home interactions.
